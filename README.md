@@ -1,7 +1,17 @@
 # पहाड़ी बैठक · Pahadi Baithak
 
-One page, built with Preact. 60 Kumaoni songs — the folk canon, Gopal Babu
-Goswami, the singers filling speakers now, and the jhoda–chanchari circles.
+One page, built with Preact. **147 Kumaoni songs** across eight rooms:
+
+| Room | | Songs |
+|---|---|--:|
+| लोकगीत | Folk canon — Bedu Pako, Chhana Bilauri, Haye Teri Rumala, Nyoli, Chhapeli | 24 |
+| पुरखों की आवाज़ | The first voices — Kabutari Devi, Mohan & Naima Khan Upreti | 13 |
+| गोपाल बाबू गोस्वामी | The voice | 12 |
+| नई पहाड़ी | Playing now — Pappu Karki, Inder Arya, Priyanka Meher, Jitendra Tomkyal | 70 |
+| झोड़ा–चांचरी | Circle dances, chholiya | 10 |
+| बैठकी होली | Holi in the hills | 6 |
+| संस्कार गीत | Weddings and rites — shakunakhar, mangal geet | 4 |
+| जागर | Calling the gods — Golu Devta, Nanda Devi | 8 |
 
 ## Run it
 
@@ -53,11 +63,30 @@ id is `mKlSC60wfCY`.
 { "title": "गाने का नाम", "artist": "गायक", "group": "lok", "yt": "mKlSC60wfCY", "mp3": null }
 ```
 
-`group` must match one of the ids in `groups`: `lok`, `gbg`, `nai`, `jhoda`.
-Cover art comes from the YouTube thumbnail automatically.
+`group` must match one of the ids in `groups`: `lok`, `purv`, `gbg`, `nai`,
+`jhoda`, `holi`, `sanskar`, `jagar`. Cover art comes from the YouTube
+thumbnail automatically.
 
-All 60 ids were checked and resolve. If one is taken down later the player
+All 147 ids were checked and resolve. If one is taken down later the player
 says so, marks the card, and skips to the next song instead of sitting silent.
+To re-check the whole songbook at any time:
+
+```bash
+python3 - <<'EOF'
+import json, urllib.request, concurrent.futures as cf
+d = json.load(open('public/songs.json'))
+def chk(t):
+    try:
+        r = urllib.request.urlopen(urllib.request.Request(
+            f"https://i.ytimg.com/vi/{t['yt']}/mqdefault.jpg", method='HEAD'), timeout=20)
+        return t, r.status
+    except Exception as e:
+        return t, getattr(e, 'code', 'ERR')
+with cf.ThreadPoolExecutor(16) as ex:
+    for t, s in ex.map(chk, d['tracks']):
+        if s != 200: print('DEAD', t['yt'], t['title'], '—', t['artist'])
+EOF
+```
 
 ## Play your own files instead
 

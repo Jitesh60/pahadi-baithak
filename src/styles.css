@@ -457,6 +457,10 @@ a{ color:inherit; }
 }
 .panel.is-on{ transform:none; }
 
+/* .panel sets display:flex, which beats the UA [hidden] rule — without this
+   the closed panel is off-screen but still in the tab order. */
+.panel[hidden]{ display:none; }
+
 .panel__head{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
 .panel__eyebrow{
   margin:0 0 4px;
@@ -475,6 +479,22 @@ a{ color:inherit; }
 .panel__x svg{ width:17px; height:17px; }
 
 .rooms{ display:flex; flex-wrap:wrap; gap:7px; margin:16px 0 14px; flex:0 0 auto; }
+
+/* Eight rooms wrap to five rows on a phone and swallow the list. One row
+   that scrolls sideways instead, bleeding to the edge so it reads scrollable. */
+@media (max-width:720px){
+  .rooms{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x proximity;
+    scrollbar-width:none;
+    margin-inline:calc(var(--gut) * -1);
+    padding-inline:var(--gut);
+  }
+  .rooms::-webkit-scrollbar{ display:none; }
+  .room{ flex:0 0 auto; scroll-snap-align:start; }
+}
 .room{
   border:1px solid var(--hair); background:transparent; color:var(--ink-dim);
   border-radius:999px; padding:6px 14px; cursor:pointer;

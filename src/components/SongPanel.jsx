@@ -30,13 +30,31 @@ export default function SongPanel({
   const closeRef = useRef(null);
   const gridRef = useRef(null);
 
-  /* Land on whatever is playing rather than at the top of sixty songs. */
+  /* Two flags, because the panel must be display:none when closed (else its
+     buttons stay in the tab order) yet still animate both ways:
+       present — in the DOM at all; lags the close by the transition
+       shown   — carries .is-on; lags the open by a frame so it can slide  */
+  const [present, setPresent] = useState(false);
+  const [shown, setShown] = useState(false);
+
   useEffect(() => {
-    if (!open) return;
+    if (open) {
+      setPresent(true);
+      const r = requestAnimationFrame(() => requestAnimationFrame(() => setShown(true)));
+      return () => cancelAnimationFrame(r);
+    }
+    setShown(false);
+    const id = setTimeout(() => setPresent(false), 430);
+    return () => clearTimeout(id);
+  }, [open]);
+
+  /* Land on whatever is playing rather than at the top of the whole songbook. */
+  useEffect(() => {
+    if (!shown) return;
     closeRef.current?.focus();
     const el = gridRef.current?.querySelector('.is-current');
     if (el) el.scrollIntoView({ block: 'center' });
-  }, [open]);
+  }, [shown]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -57,8 +75,8 @@ export default function SongPanel({
 
   return (
     <>
-      <div class={`veil${open ? ' is-on' : ''}`} hidden={!open} onClick={onClose} />
-      <div class={`panel${open ? ' is-on' : ''}`} id="listPanel" hidden={!open}>
+      <div class={`veil${shown ? ' is-on' : ''}`} hidden={!present} onClick={onClose} />
+      <div class={`panel${shown ? ' is-on' : ''}`} id="listPanel" hidden={!present}>
         <div class="panel__head">
           <div>
             <p class="panel__eyebrow">The songbook</p>
