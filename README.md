@@ -1,17 +1,51 @@
 # पहाड़ी बैठक · Pahadi Baithak
 
-One page, built with Preact. **158 Kumaoni songs** across eight rooms:
+One page, built with Preact. **170 Kumaoni songs** across eight rooms:
 
 | Room | | Songs |
 |---|---|--:|
-| लोकगीत | Folk canon — Bedu Pako, Chhana Bilauri, Haye Teri Rumala, Nyoli, Chhapeli, bair-bhagnaul, hudkiya baul, the Rajula–Malushahi ballad | 30 |
+| लोकगीत | Folk canon — Bedu Pako, Chhana Bilauri, Haye Teri Rumala, Nyoli, Chhapeli, bair-bhagnaul, hudkiya baul, the Rajula–Malushahi ballad | 31 |
 | पुरखों की आवाज़ | The first voices — Kabutari Devi, Mohan & Naima Khan Upreti | 13 |
 | गोपाल बाबू गोस्वामी | The voice — including the Haru Heet and Malu Rauteli kathas | 15 |
-| नई पहाड़ी | Playing now — Pappu Karki, Inder Arya, Priyanka Meher, Jitendra Tomkyal | 71 |
+| नई पहाड़ी | Playing now — B. K. Samant, Prahlad Singh Mehra, Pappu Karki, Inder Arya, Priyanka Meher, Jitendra Tomkyal | 79 |
 | झोड़ा–चांचरी | Circle dances, chholiya | 10 |
 | बैठकी होली | Holi in the hills | 6 |
 | संस्कार गीत | Weddings and rites — shakunakhar, mangal geet | 4 |
-| जागर | Calling the gods — Golu Devta, Nanda Devi, bhajan | 9 |
+| जागर | Calling the gods — Basanti Bisht, Golu Devta, Nanda Devi, bhajan | 12 |
+
+### Singer roster
+
+Compiled from Wikipedia (Uttarakhandi music, Kumaoni language, artist pages)
+and ghughuti.org, then checked against the songbook. Garhwali-only artists are
+deliberately excluded — Narendra Singh Negi, Chandra Singh Rahi, Pritam
+Bhartwan and Kishan Mahipal belong to a different language and a different page.
+
+**In the songbook**
+
+| Singer | Tracks |
+|---|--:|
+| गोपाल बाबू गोस्वामी · Gopal Babu Goswami | 15 |
+| पप्पू कार्की · Pappu Karki | 8 |
+| फौजी ललित मोहन जोशी · Fauji Lalit Mohan Joshi | 8 |
+| जितेन्द्र टोमक्याल · Jitendra Tomkyal | 7 |
+| मीना राणा · Meena Rana | 6 |
+| इंदर आर्य · Inder Arya, प्रियंका मेहर · Priyanka Meher, गोपाल मठपाल · Gopal Mathpal, प्रह्लाद सिंह मेहरा · Prahlad Singh Mehra | 5 each |
+| ममता आर्य · Mamta Arya | 4 |
+| मोहन उप्रेती · Mohan Upreti, कबूतरी देवी · Kabutari Devi, हीरा सिंह राणा · Heera Singh Rana, बसंती बिष्ट · Basanti Bisht, बी. के. सामंत · B. K. Samant | 3 each |
+| नईमा खान उप्रेती · Naima Khan Upreti, कल्पना चौहान · Kalpana Chauhan | 2 each |
+| कमला देवी · Kamla Devi, बसंती देवी · Basanti Devi, नैन नाथ रावल · Nain Nath Rawal, बीना तिवारी · Beena Tiwari, गिर्दा · Girda | 1 each |
+
+**Named in the sources, not yet in the songbook**
+
+| Singer | Why not |
+|---|---|
+| झुसिया दमाई · Jhusia Damai | No recording found on YouTube. His Wikipedia page names no songs. |
+| मोहन मनराल · Mohan Manral | No recording found |
+| बचन दे · Bachan Dei | No recording found |
+| दीवान सिंह कँवाल · Deewan Singh Kanwal | No recording found |
+| मोहन सिंह रीठागाड़ी · Mohan Singh Reethagadi | No recording found |
+| अनुराधा निराला · Anuradha Nirala | Results were Garhwali; couldn't confirm a Kumaoni track |
+| संकल्प खेतवाल · Sankalp Khetwal | Releases found are Hindi indie, not Kumaoni |
 
 ### How the songbook was built
 
@@ -58,7 +92,7 @@ src/
     Player.jsx        Art, title, transport, songbook toggle
     Seek.jsx          Scrub bar (drag + arrow keys)
     LineCard.jsx      A known line, and what it actually says
-    SongPanel.jsx     Room filters and the 60-song grid
+    SongPanel.jsx     Room filters and the song grid
 ```
 
 ## Add a song
@@ -77,7 +111,7 @@ id is `mKlSC60wfCY`.
 `jhoda`, `holi`, `sanskar`, `jagar`. Cover art comes from the YouTube
 thumbnail automatically.
 
-All 158 ids were checked and resolve. If one is taken down later the player
+All 170 ids were checked and resolve. If one is taken down later the player
 says so, marks the card, and skips to the next song instead of sitting silent.
 To re-check the whole songbook at any time:
 

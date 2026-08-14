@@ -43,6 +43,7 @@
     {"title": "हाय तेरी रुमाला · lyric", "artist": "कुमाऊनी विवाह गीत", "group": "lok", "yt": "Pf-1zKhbUNI", "mp3": null},
     {"title": "मैं छू पहाड़ी रै", "artist": "कुमाऊनी", "group": "lok", "yt": "c45uwan7lJg", "mp3": null},
     {"title": "कैलै बजै मुरूली · बांसुरी व हुड़का", "artist": "वाद्य", "group": "lok", "yt": "bUaeBjhIpvw", "mp3": null},
+    {"title": "उत्तराखंड मेरी मातृभूमि", "artist": "गिर्दा · उप्रेती सिस्टर्स", "group": "lok", "yt": "J-SjggjlzZc", "mp3": null},
 
     {"title": "पहाड़ ठंडो पानी", "artist": "कबूतरी देवी", "group": "purv", "yt": "vb4l8Sk2wyo", "mp3": null},
     {"title": "पहाड़ो ठंडो पानी · original", "artist": "कबूतरी देवी", "group": "purv", "yt": "A-ViM4Ow4Jc", "mp3": null},
@@ -145,6 +146,14 @@
     {"title": "घाघरा", "artist": "मन जोशी", "group": "nai", "yt": "FDM6V0TphOE", "mp3": null},
     {"title": "मैं पहाड़न", "artist": "ममता आर्य", "group": "nai", "yt": "iqQmA5DXN40", "mp3": null},
     {"title": "हिट कमला", "artist": "राज भंडारी", "group": "nai", "yt": "QfXAuPsO2MA", "mp3": null},
+    {"title": "थल की बजार", "artist": "बी. के. सामंत", "group": "nai", "yt": "ijN3PK7j6PQ", "mp3": null},
+    {"title": "यो मेरो पहाड़", "artist": "बी. के. सामंत", "group": "nai", "yt": "lcF2wFFIiBY", "mp3": null},
+    {"title": "तु ऐ जा औ पहाड़", "artist": "बी. के. सामंत · RJ Kaavya", "group": "nai", "yt": "k7MbdHZUg4M", "mp3": null},
+    {"title": "एजा मेरा डानपुरा", "artist": "प्रह्लाद सिंह मेहरा", "group": "nai", "yt": "klIG3ZZUUl4", "mp3": null},
+    {"title": "एजा एजा रे", "artist": "प्रह्लाद सिंह मेहरा · मीना राणा", "group": "nai", "yt": "ZXEMwAodzko", "mp3": null},
+    {"title": "12 घंटे की ड्यूटी मेरी", "artist": "प्रह्लाद सिंह मेहरा", "group": "nai", "yt": "_aFWn1JXNFU", "mp3": null},
+    {"title": "पति द्वात भूल गै", "artist": "प्रह्लाद सिंह मेहरा", "group": "nai", "yt": "o0E6Dc7IBbM", "mp3": null},
+    {"title": "बिराण देश", "artist": "प्रह्लाद सिंह मेहरा · ममता आर्य", "group": "nai", "yt": "CyJNwlaiCEk", "mp3": null},
 
     {"title": "कुमाऊनी झोड़ा चांचरी", "artist": "Naveen Pathak & Gitika Ashwal", "group": "jhoda", "yt": "pvCQ8dDCkvY", "mp3": null},
     {"title": "सूपा भरी धाना", "artist": "झोड़ा–चांचरी", "group": "jhoda", "yt": "AfQdE5Y85SE", "mp3": null},
@@ -177,7 +186,10 @@
     {"title": "गोलू देवता जागर", "artist": "कुमाऊनी", "group": "jagar", "yt": "rFIIcrxenyo", "mp3": null},
     {"title": "गोलू देवता जागर", "artist": "कुमाऊनी", "group": "jagar", "yt": "UJehfRHV3m8", "mp3": null},
     {"title": "आरती गोलू देवता की", "artist": "कैलाश", "group": "jagar", "yt": "P06Yp7hBxEc", "mp3": null},
-    {"title": "भगवती भवानी · माय्या आयी रेयू", "artist": "कुमाऊनी भजन", "group": "jagar", "yt": "RuIEE-TjESg", "mp3": null}
+    {"title": "भगवती भवानी · माय्या आयी रेयू", "artist": "कुमाऊनी भजन", "group": "jagar", "yt": "RuIEE-TjESg", "mp3": null},
+    {"title": "गौरिल देवता जागर", "artist": "बसंती बिष्ट", "group": "jagar", "yt": "9R_uTOIvTjU", "mp3": null},
+    {"title": "माँ नन्दा देवी जागर", "artist": "बसंती बिष्ट", "group": "jagar", "yt": "7-4_B3m_wHQ", "mp3": null},
+    {"title": "जागर गायन", "artist": "बसंती बिष्ट", "group": "jagar", "yt": "K7NPQUcRD2o", "mp3": null}
   ],
 
   "lines": [
@@ -190,6 +202,7 @@
     {"text": "पहाड़ो ठंडो पानी", "meaning": "The mountain's water runs cold. Kabutari Devi's is the voice older Kumaonis mean when they say they miss the radio.", "src": "कबूतरी देवी"},
     {"text": "शकुनाखर", "meaning": "The auspicious opening. Before any Kumaoni rite begins the women of the house sing this first — nothing starts until it is sung.", "src": "संस्कार गीत"},
     {"text": "जागर", "meaning": "A night-long sung invocation. The dhol calls, the singer recites the deity's story, and the god arrives in a human medium before dawn.", "src": "जागर परंपरा"},
-    {"text": "सोनचड़ी", "meaning": "The golden bird of the Rajula–Malushahi ballad — a Katyuri prince, a Shauka trader's daughter, and a thousand years of bards carrying it village to village before anyone wrote it down.", "src": "राजुला–मालूशाही"}
+    {"text": "सोनचड़ी", "meaning": "The golden bird of the Rajula–Malushahi ballad — a Katyuri prince, a Shauka trader's daughter, and a thousand years of bards carrying it village to village before anyone wrote it down.", "src": "राजुला–मालूशाही"},
+    {"text": "थल की बजार", "meaning": "The market at Thal. B. K. Samant's 2018 song is the most-watched Kumaoni video ever made — sixty million plays for a song about a bazaar in Pithoragarh.", "src": "बी. के. सामंत"}
   ]
 }
