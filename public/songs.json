@@ -37,6 +37,12 @@
     {"title": "छपेली नृत्य", "artist": "पारंपरिक", "group": "lok", "yt": "HizdTlbP5OI", "mp3": null},
     {"title": "छपेली", "artist": "पारंपरिक", "group": "lok", "yt": "yTDgzaruXJ8", "mp3": null},
     {"title": "मैं छु ठेठ पहाड़ी", "artist": "कुमाऊनी", "group": "lok", "yt": "dOOqqlmBByU", "mp3": null},
+    {"title": "सोनचड़ी · राजुला मालूशाही", "artist": "कमला देवी · नेहा कक्कड़ · digV", "group": "lok", "yt": "L9CfCjedhPE", "mp3": null},
+    {"title": "बैर भगनौल", "artist": "नैन नाथ रावल", "group": "lok", "yt": "V9nKFzpyM94", "mp3": null},
+    {"title": "हुड़किया बौल", "artist": "लुप्त होती परंपरा", "group": "lok", "yt": "uxevBw2h8m0", "mp3": null},
+    {"title": "हाय तेरी रुमाला · lyric", "artist": "कुमाऊनी विवाह गीत", "group": "lok", "yt": "Pf-1zKhbUNI", "mp3": null},
+    {"title": "मैं छू पहाड़ी रै", "artist": "कुमाऊनी", "group": "lok", "yt": "c45uwan7lJg", "mp3": null},
+    {"title": "कैलै बजै मुरूली · बांसुरी व हुड़का", "artist": "वाद्य", "group": "lok", "yt": "bUaeBjhIpvw", "mp3": null},
 
     {"title": "पहाड़ ठंडो पानी", "artist": "कबूतरी देवी", "group": "purv", "yt": "vb4l8Sk2wyo", "mp3": null},
     {"title": "पहाड़ो ठंडो पानी · original", "artist": "कबूतरी देवी", "group": "purv", "yt": "A-ViM4Ow4Jc", "mp3": null},
@@ -64,6 +70,9 @@
     {"title": "बटी के बरात, चेली बैठ डोली मा", "artist": "गोपाल बाबू गोस्वामी · बिदाई गीत", "group": "gbg", "yt": "AOIm8gwDpvs", "mp3": null},
     {"title": "आज मैके भटुली लागि", "artist": "गोपाल बाबू गोस्वामी", "group": "gbg", "yt": "KDT4AB8hoSA", "mp3": null},
     {"title": "देवी बाराही आरती", "artist": "गोपाल बाबू गोस्वामी", "group": "gbg", "yt": "gtWRKExSVQc", "mp3": null},
+    {"title": "हरू हीत · मालू रौतेली", "artist": "गोपाल बाबू गोस्वामी", "group": "gbg", "yt": "QLP2tKYfbAo", "mp3": null},
+    {"title": "देवीधुरा भवानी माँ", "artist": "गोपाल बाबू गोस्वामी", "group": "gbg", "yt": "sTLUHWyzeaE", "mp3": null},
+    {"title": "घुघुती ना बासा आमे की डाई", "artist": "गोपाल बाबू गोस्वामी", "group": "gbg", "yt": "RWDKHdBde64", "mp3": null},
 
     {"title": "सुन ले दगड़िया", "artist": "पप्पू कार्की", "group": "nai", "yt": "47LQmhaOdtA", "mp3": null},
     {"title": "मधुली", "artist": "पप्पू कार्की", "group": "nai", "yt": "HGaJUjneBTk", "mp3": null},
@@ -135,6 +144,7 @@
     {"title": "हिमुली", "artist": "राकेश खनवाल · ममता आर्य", "group": "nai", "yt": "fsrQLToqu9E", "mp3": null},
     {"title": "घाघरा", "artist": "मन जोशी", "group": "nai", "yt": "FDM6V0TphOE", "mp3": null},
     {"title": "मैं पहाड़न", "artist": "ममता आर्य", "group": "nai", "yt": "iqQmA5DXN40", "mp3": null},
+    {"title": "हिट कमला", "artist": "राज भंडारी", "group": "nai", "yt": "QfXAuPsO2MA", "mp3": null},
 
     {"title": "कुमाऊनी झोड़ा चांचरी", "artist": "Naveen Pathak & Gitika Ashwal", "group": "jhoda", "yt": "pvCQ8dDCkvY", "mp3": null},
     {"title": "सूपा भरी धाना", "artist": "झोड़ा–चांचरी", "group": "jhoda", "yt": "AfQdE5Y85SE", "mp3": null},
@@ -166,7 +176,8 @@
     {"title": "श्री गोलू देवता जागर", "artist": "कुमाऊनी", "group": "jagar", "yt": "Am-0K_Sf_Ps", "mp3": null},
     {"title": "गोलू देवता जागर", "artist": "कुमाऊनी", "group": "jagar", "yt": "rFIIcrxenyo", "mp3": null},
     {"title": "गोलू देवता जागर", "artist": "कुमाऊनी", "group": "jagar", "yt": "UJehfRHV3m8", "mp3": null},
-    {"title": "आरती गोलू देवता की", "artist": "कैलाश", "group": "jagar", "yt": "P06Yp7hBxEc", "mp3": null}
+    {"title": "आरती गोलू देवता की", "artist": "कैलाश", "group": "jagar", "yt": "P06Yp7hBxEc", "mp3": null},
+    {"title": "भगवती भवानी · माय्या आयी रेयू", "artist": "कुमाऊनी भजन", "group": "jagar", "yt": "RuIEE-TjESg", "mp3": null}
   ],
 
   "lines": [
@@ -178,6 +189,7 @@
     {"text": "सुन ले दगड़िया", "meaning": "Listen, my companion. Pappu Karki, gone at 32, still the voice at every pahadi wedding.", "src": "पप्पू कार्की"},
     {"text": "पहाड़ो ठंडो पानी", "meaning": "The mountain's water runs cold. Kabutari Devi's is the voice older Kumaonis mean when they say they miss the radio.", "src": "कबूतरी देवी"},
     {"text": "शकुनाखर", "meaning": "The auspicious opening. Before any Kumaoni rite begins the women of the house sing this first — nothing starts until it is sung.", "src": "संस्कार गीत"},
-    {"text": "जागर", "meaning": "A night-long sung invocation. The dhol calls, the singer recites the deity's story, and the god arrives in a human medium before dawn.", "src": "जागर परंपरा"}
+    {"text": "जागर", "meaning": "A night-long sung invocation. The dhol calls, the singer recites the deity's story, and the god arrives in a human medium before dawn.", "src": "जागर परंपरा"},
+    {"text": "सोनचड़ी", "meaning": "The golden bird of the Rajula–Malushahi ballad — a Katyuri prince, a Shauka trader's daughter, and a thousand years of bards carrying it village to village before anyone wrote it down.", "src": "राजुला–मालूशाही"}
   ]
 }

@@ -1,17 +1,27 @@
 # पहाड़ी बैठक · Pahadi Baithak
 
-One page, built with Preact. **147 Kumaoni songs** across eight rooms:
+One page, built with Preact. **158 Kumaoni songs** across eight rooms:
 
 | Room | | Songs |
 |---|---|--:|
-| लोकगीत | Folk canon — Bedu Pako, Chhana Bilauri, Haye Teri Rumala, Nyoli, Chhapeli | 24 |
+| लोकगीत | Folk canon — Bedu Pako, Chhana Bilauri, Haye Teri Rumala, Nyoli, Chhapeli, bair-bhagnaul, hudkiya baul, the Rajula–Malushahi ballad | 30 |
 | पुरखों की आवाज़ | The first voices — Kabutari Devi, Mohan & Naima Khan Upreti | 13 |
-| गोपाल बाबू गोस्वामी | The voice | 12 |
-| नई पहाड़ी | Playing now — Pappu Karki, Inder Arya, Priyanka Meher, Jitendra Tomkyal | 70 |
+| गोपाल बाबू गोस्वामी | The voice — including the Haru Heet and Malu Rauteli kathas | 15 |
+| नई पहाड़ी | Playing now — Pappu Karki, Inder Arya, Priyanka Meher, Jitendra Tomkyal | 71 |
 | झोड़ा–चांचरी | Circle dances, chholiya | 10 |
 | बैठकी होली | Holi in the hills | 6 |
 | संस्कार गीत | Weddings and rites — shakunakhar, mangal geet | 4 |
-| जागर | Calling the gods — Golu Devta, Nanda Devi | 8 |
+| जागर | Calling the gods — Golu Devta, Nanda Devi, bhajan | 9 |
+
+### How the songbook was built
+
+Reference first, YouTube second. The genre list (mandal, panwara, khuded,
+thadya, jhoda, bair-bhagnaul, hudkiya baul) and the roll of singers came from
+Wikipedia's Kumaoni-language article and artist pages; each title was then
+searched on YouTube for a real recording, and **every id was confirmed by
+fetching its thumbnail** before being added. Candidates that turned out to be
+narration, interviews, teasers or behind-the-scenes footage were dropped — this
+is a player, and spoken video stalls the queue.
 
 ## Run it
 
@@ -67,7 +77,7 @@ id is `mKlSC60wfCY`.
 `jhoda`, `holi`, `sanskar`, `jagar`. Cover art comes from the YouTube
 thumbnail automatically.
 
-All 147 ids were checked and resolve. If one is taken down later the player
+All 158 ids were checked and resolve. If one is taken down later the player
 says so, marks the card, and skips to the next song instead of sitting silent.
 To re-check the whole songbook at any time:
 
