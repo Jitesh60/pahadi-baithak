@@ -7,9 +7,12 @@ import WhatsAppStrip from './components/WhatsAppStrip.jsx';
 import Player from './components/Player.jsx';
 import LineCard from './components/LineCard.jsx';
 import SongPanel from './components/SongPanel.jsx';
+import SharedCard from './components/SharedCard.jsx';
 
 import { usePlayer } from './hooks/usePlayer.js';
 import { useRotatingLine } from './hooks/useChrome.js';
+import { useMyList } from './hooks/useMyList.js';
+import { readSharedList, clearSharedList } from './lib/share.js';
 
 /* songs.json is fetched rather than imported so it stays hand-editable in
    the built output — change a song, reload, done. No rebuild. */
@@ -19,9 +22,16 @@ export default function App() {
   const [book, setBook] = useState({ groups: [], tracks: [], lines: [] });
   const [failed, setFailed] = useState(false);
   const [listOpen, setListOpen] = useState(false);
+  const [sharedIds, setSharedIds] = useState(readSharedList);
 
   const player = usePlayer(book.tracks);
   const { line, turning } = useRotatingLine(book.lines);
+  const myList = useMyList();
+
+  /* a friend's list, as positions in the songbook (unknown ids are dropped) */
+  const at = new Map(book.tracks.map((t, i) => [t.yt, i]));
+  const shared = sharedIds.map((id) => at.get(id)).filter((i) => i !== undefined);
+  const sharedSaved = sharedIds.every((id) => myList.has(id));
 
   useEffect(() => {
     fetch(SONGBOOK)
@@ -37,11 +47,16 @@ export default function App() {
   const openList = useCallback(() => setListOpen((v) => !v), []);
   const closeList = useCallback(() => setListOpen(false), []);
 
-  const pickFromList = useCallback((i) => {
+  /* queue: the list to keep playing from (my list), or null for the whole book */
+  const pickFromList = useCallback((i, queue) => {
+    player.setPlaylist(queue);
     if (i === player.idx) player.toggle();
     else player.pick(i, true);
     setListOpen(false);   /* get out of the way so you can see the hills again */
-  }, [player.idx, player.toggle, player.pick]);
+  }, [player.idx, player.toggle, player.pick, player.setPlaylist]);
+
+  const dismissShared = useCallback(() => { setSharedIds([]); clearSharedList(); }, []);
+  const playShared = () => { player.playQueue(shared); dismissShared(); };
 
   /* space toggles play, unless you're on a control or the list is up */
   useEffect(() => {
@@ -73,7 +88,17 @@ export default function App() {
           <h1 class="wordmark"><span>पहाड़ी</span><span>बैठक</span></h1>
           <p class="wordmark__sub">Pahadi Baithak · Kumaoni Sounds</p>
 
-          <WhatsAppStrip />
+          {ready && shared.length > 0
+            ? (
+              <SharedCard
+                tracks={shared.map((i) => book.tracks[i])}
+                saved={sharedSaved}
+                onPlay={playShared}
+                onSave={() => myList.addAll(shared.map((i) => book.tracks[i].yt))}
+                onDismiss={dismissShared}
+              />
+            )
+            : <WhatsAppStrip />}
 
           <Player
             track={failed ? null : player.current}
@@ -116,6 +141,8 @@ export default function App() {
         idx={player.idx}
         playing={player.playing}
         dead={player.dead}
+        myList={myList.ids}
+        onToggleMine={myList.toggle}
         onPick={pickFromList}
         onClose={closeList}
       />
