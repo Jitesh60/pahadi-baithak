@@ -4,6 +4,7 @@ import { shareList, whatsappHref } from '../lib/share.js';
 
 const ALL = '*';
 const MINE = 'mine';
+const LIB = 'library';
 
 function Song({ track, index, isCurrent, isPaused, isDead, inList, onPick, onToggleMine }) {
   const cls = [
@@ -64,10 +65,44 @@ function ShareBar({ ids }) {
   );
 }
 
+function LibraryBar({ library }) {
+  const [url, setUrl] = useState('');
+  const submit = async (e) => {
+    e.preventDefault();
+    if (url.trim() && await library.add(url.trim())) setUrl('');
+  };
+  return (
+    <form class="libbar" onSubmit={submit}>
+      <input
+        class="libbar__in"
+        type="url"
+        inputMode="url"
+        placeholder="YouTube लिंक चिपकाएँ…"
+        aria-label="YouTube link"
+        value={url}
+        onInput={(e) => setUrl(e.currentTarget.value)}
+        disabled={library.busy}
+      />
+      <button class="sharebtn sharebtn--play" disabled={library.busy || !url.trim()}>
+        {library.busy ? 'ला रहे हैं…' : 'जोड़ें'}
+      </button>
+      <p class={`libbar__note${library.error ? ' is-err' : ''}`} role="status">
+        {library.error
+          || (library.busy
+            ? 'गाना सर्वर पर उतर रहा है — आधा मिनट लगेगा।'
+            : 'सिर्फ़ आपके लिए: गाना आपकी Cloudflare में रहेगा, बिना ऐड के चलेगा।')}
+        {' '}
+        <button type="button" class="libbar__forget" onClick={library.forget}>इस डिवाइस से हटाएँ</button>
+      </p>
+    </form>
+  );
+}
+
 export default function SongPanel({
-  open, groups, tracks, idx, playing, dead, myList, onToggleMine, onPick, onClose,
+  open, groups, tracks, library, idx, playing, dead, myList, onToggleMine, onPick, onClose,
 }) {
   const [room, setRoom] = useState(ALL);
+  useEffect(() => { if (!library.on && room === LIB) setRoom(ALL); }, [library.on, room]);
   const closeRef = useRef(null);
   const gridRef = useRef(null);
 
@@ -114,16 +149,23 @@ export default function SongPanel({
   const mine = myList.map((id) => at.get(id)).filter((i) => i !== undefined);
   const inMine = new Set(myList);
 
-  /* Picking from my list plays just my list; anywhere else, the whole book. */
-  const pick = (i) => onPick(i, room === MINE ? mine : null);
+  /* the library, newest first */
+  const libIdx = library.on
+    ? library.songs.map((s) => at.get(s.yt)).filter((i) => i !== undefined).reverse()
+    : [];
 
-  const shownIdx = room === MINE
-    ? mine
-    : tracks.map((_, i) => i).filter((i) => room === ALL || tracks[i].group === room);
+  /* Picking from my list (or the library) plays just that; anywhere else, the whole book. */
+  const pick = (i) => onPick(i, room === MINE ? mine : room === LIB ? libIdx : null);
+
+  let shownIdx;
+  if (room === MINE) shownIdx = mine;
+  else if (room === LIB) shownIdx = libIdx;
+  else shownIdx = tracks.map((_, i) => i).filter((i) => room === ALL || tracks[i].group === room);
 
   const rooms = [
     { id: ALL, hi: 'सब कुछ', en: 'Everything', n: tracks.length },
     { id: MINE, hi: 'मेरी सूची', en: 'My list', n: mine.length },
+    ...(library.on ? [{ id: LIB, hi: 'लाइब्रेरी', en: 'Library', n: libIdx.length }] : []),
     ...groups.map((g) => ({ ...g, n: counts[g.id] || 0 })),
   ];
 
@@ -157,6 +199,7 @@ export default function SongPanel({
           ))}
         </div>
 
+        {room === LIB && library.on && <LibraryBar library={library} />}
         {room === MINE && mine.length > 0 && <ShareBar ids={mine.map((i) => tracks[i].yt)} />}
 
         <div class="grid" ref={gridRef}>
@@ -164,6 +207,11 @@ export default function SongPanel({
             <p class="grid__empty">
               अभी कोई गाना नहीं। किसी भी गाने के आगे <b>＋</b> दबाएँ — वो यहाँ आ जाएगा,
               फिर पूरी सूची दोस्तों को भेज सकते हैं।
+            </p>
+          )}
+          {room === LIB && libIdx.length === 0 && !library.busy && (
+            <p class="grid__empty">
+              ऊपर कोई भी YouTube लिंक चिपकाएँ — गाना यहाँ आ जाएगा और बिना ऐड के बजेगा।
             </p>
           )}
           {shownIdx.map((i) => (
