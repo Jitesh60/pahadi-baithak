@@ -27,6 +27,7 @@ export function usePlayer(tracks) {
   const [dead, setDead] = useState(() => new Set());
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [queue, setQueue] = useState(null);      // track indices, or null = whole songbook
 
   const yt = useRef(null);
   const ytReady = useRef(false);
@@ -35,10 +36,12 @@ export function usePlayer(tracks) {
   const idxRef = useRef(-1);
   const tracksRef = useRef(tracks);
   const deadRef = useRef(dead);
+  const queueRef = useRef(null);
   const stepRef = useRef(() => {});              // YT callbacks need the latest
 
   tracksRef.current = tracks;
   deadRef.current = dead;
+  queueRef.current = queue;
 
   const current = idx >= 0 ? tracks[idx] : null;
 
@@ -96,10 +99,20 @@ export function usePlayer(tracks) {
     loadInto(list[n], autoplay);
   }, [loadInto]);
 
-  /* Skip tracks already known to be dead, so a run of them can't trap us. */
+  /* Skip tracks already known to be dead, so a run of them can't trap us.
+     With a queue (a playlist), next/prev walk the queue instead. */
   const step = useCallback((dir, autoplay) => {
     const list = tracksRef.current;
     if (!list.length) return;
+    const q = queueRef.current;
+    if (q && q.length) {
+      let at = q.indexOf(idxRef.current);
+      for (let hop = 0; hop < q.length; hop++) {
+        at = ((at + dir) % q.length + q.length) % q.length;
+        if (!deadRef.current.has(q[at])) return pick(q[at], autoplay);
+      }
+      return pick(q[0], autoplay);
+    }
     let n = idxRef.current;
     for (let hop = 0; hop < list.length; hop++) {
       n = ((n + dir) % list.length + list.length) % list.length;
@@ -107,6 +120,19 @@ export function usePlayer(tracks) {
     }
     pick(idxRef.current + dir, autoplay);
   }, [pick]);
+
+  /* Next/prev walk only these tracks, in this order. null = everything. */
+  const setPlaylist = useCallback((indices) => {
+    const q = indices && indices.length ? indices.slice() : null;
+    queueRef.current = q;
+    setQueue(q);
+  }, []);
+
+  /* ...and start playing them, from the first or from `start`. */
+  const playQueue = useCallback((indices, start) => {
+    setPlaylist(indices);
+    if (indices && indices.length) pick(start ?? indices[0], true);
+  }, [setPlaylist, pick]);
 
   stepRef.current = step;
 
@@ -248,6 +274,6 @@ export function usePlayer(tracks) {
 
   return {
     idx, current, playing, loading, note, dead, position, duration,
-    pick, toggle, step, seekByFraction, nudge,
+    queue, pick, toggle, step, seekTo, seekByFraction, nudge, setPlaylist, playQueue,
   };
 }
