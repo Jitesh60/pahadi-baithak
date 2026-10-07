@@ -1,0 +1,12 @@
+# docker compose up -d --build   (run from this server/ folder)
+services:
+  library:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "127.0.0.1:8787:8787"     # only this machine; the tunnel makes it public over HTTPS
+    # Only if YouTube asks the server to sign in (see README): uncomment, and
+    # set YTDLP_COOKIES=/app/cookies.txt in .env
+    # volumes:
+    #   - ./cookies.txt:/app/cookies.txt:ro

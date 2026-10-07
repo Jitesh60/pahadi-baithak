@@ -145,6 +145,12 @@ The link *is* the playlist: it holds YouTube ids, so there is no account or
 server, and ids that aren't in `songs.json` are skipped. My list is kept in
 this browser's `localStorage`.
 
+## Private library (ad-free, personal use)
+
+The optional server in [`server/`](server/README.md) lets **you** paste a YouTube link into a hidden **लाइब्रेरी** tab. It saves the song as MP3 in your own private Cloudflare R2 bucket, and from then on that song plays from your copy instead of YouTube.
+
+The tab only appears when the site is built with `VITE_LIBRARY_API` and the device has been unlocked with your key. Everyone else sees the site exactly as before. Setup steps are in [server/README.md](server/README.md).
+
 ## Play your own files instead
 
 Put MP3s in `public/audio/` and point a track at one:

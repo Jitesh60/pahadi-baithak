@@ -655,6 +655,31 @@ a{ color:inherit; }
 }
 .grid__empty b{ color:var(--brass); }
 
+/* the owner's library: paste a YouTube link */
+.libbar{
+  flex:0 0 auto;
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  margin:0 0 12px; padding:10px 12px;
+  border-radius:11px; border:1px solid rgba(217,164,65,.35);
+  background:rgba(217,164,65,.06);
+}
+.libbar__in{
+  flex:1 1 220px; min-width:0;
+  padding:8px 14px; border-radius:999px;
+  border:1px solid var(--hair); background:rgba(11,18,15,.7); color:var(--ink);
+  font-family:var(--body); font-size:14px;
+}
+.libbar__in::placeholder{ color:var(--ink-faint); }
+.libbar__in:focus{ outline:none; border-color:var(--brass); }
+.libbar__note{ flex:1 1 100%; margin:0; font-size:12.5px; color:var(--ink-dim); }
+.libbar__note.is-err{ color:#E8807F; }
+.libbar__forget{
+  border:0; background:none; padding:0; cursor:pointer;
+  color:var(--ink-faint); font:inherit; text-decoration:underline;
+}
+.libbar__forget:hover{ color:var(--ink); }
+.libbar .sharebtn:disabled{ opacity:.6; }
+
 #yt-host{ position:fixed; width:1px; height:1px; left:-9999px; top:0; opacity:0; pointer-events:none; }
 
 /* ═══════════ QUALITY FLOOR ═══════════ */
