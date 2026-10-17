@@ -132,6 +132,19 @@ with cf.ThreadPoolExecutor(16) as ex:
 EOF
 ```
 
+## My list and sharing
+
+Every song in the list has a **＋**. Tapping it adds the song to **मेरी सूची**
+(My list), which is a room of its own in the song list. Playing from My list
+plays only those songs, in order, then starts again.
+
+From My list, **WhatsApp** or **लिंक शेयर करें** sends a link like
+`/?list=E-1T4WhZFj0,9-RMU0BsUYU`. A friend who opens it sees a card with
+**सुनें** (play these songs in order) and **मेरी सूची में रखें** (save them).
+The link *is* the playlist: it holds YouTube ids, so there is no account or
+server, and ids that aren't in `songs.json` are skipped. My list is kept in
+this browser's `localStorage`.
+
 ## Play your own files instead
 
 Put MP3s in `public/audio/` and point a track at one:
