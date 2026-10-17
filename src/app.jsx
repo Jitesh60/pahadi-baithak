@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'preact/hooks';
+import { useCallback, useEffect, useMemo, useState } from 'preact/hooks';
 
 import Defs from './components/Defs.jsx';
 import AipanFrame from './components/AipanFrame.jsx';
@@ -12,6 +12,7 @@ import SharedCard from './components/SharedCard.jsx';
 import { usePlayer } from './hooks/usePlayer.js';
 import { useRotatingLine } from './hooks/useChrome.js';
 import { useMyList } from './hooks/useMyList.js';
+import { useLibrary, withLibrary } from './hooks/useLibrary.js';
 import { readSharedList, clearSharedList } from './lib/share.js';
 
 /* songs.json is fetched rather than imported so it stays hand-editable in
@@ -24,12 +25,16 @@ export default function App() {
   const [listOpen, setListOpen] = useState(false);
   const [sharedIds, setSharedIds] = useState(readSharedList);
 
-  const player = usePlayer(book.tracks);
+  const library = useLibrary();
+  /* your saved copies play instead of YouTube; extra songs join the end */
+  const tracks = useMemo(() => withLibrary(book.tracks, library.songs), [book.tracks, library.songs]);
+
+  const player = usePlayer(tracks);
   const { line, turning } = useRotatingLine(book.lines);
   const myList = useMyList();
 
   /* a friend's list, as positions in the songbook (unknown ids are dropped) */
-  const at = new Map(book.tracks.map((t, i) => [t.yt, i]));
+  const at = new Map(tracks.map((t, i) => [t.yt, i]));
   const shared = sharedIds.map((id) => at.get(id)).filter((i) => i !== undefined);
   const sharedSaved = sharedIds.every((id) => myList.has(id));
 
@@ -91,10 +96,10 @@ export default function App() {
           {ready && shared.length > 0
             ? (
               <SharedCard
-                tracks={shared.map((i) => book.tracks[i])}
+                tracks={shared.map((i) => tracks[i])}
                 saved={sharedSaved}
                 onPlay={playShared}
-                onSave={() => myList.addAll(shared.map((i) => book.tracks[i].yt))}
+                onSave={() => myList.addAll(shared.map((i) => tracks[i].yt))}
                 onDismiss={dismissShared}
               />
             )
@@ -109,7 +114,7 @@ export default function App() {
               : player.note}
             position={player.position}
             duration={player.duration}
-            count={book.tracks.length}
+            count={tracks.length}
             listOpen={listOpen}
             onToggle={player.toggle}
             onStep={(dir) => player.step(dir, true)}
@@ -137,7 +142,8 @@ export default function App() {
       <SongPanel
         open={listOpen}
         groups={book.groups}
-        tracks={book.tracks}
+        tracks={tracks}
+        library={library}
         idx={player.idx}
         playing={player.playing}
         dead={player.dead}
